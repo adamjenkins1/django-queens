@@ -1,6 +1,3 @@
-//board.cpp
-//Author: Alexander Corley
-//11-08-2017
 #include "board.h"
 #include <vector>
 #include <cassert>

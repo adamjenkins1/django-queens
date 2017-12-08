@@ -1,6 +1,3 @@
-//hill.cpp
-//Author: Alexander Corley
-//11-15-2017
 #include "hill.h"
 #include "board.h"
 #include <cmath>
@@ -8,15 +5,21 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+using std::srand;
+using std::time;
+using std::make_pair;
+using std::pair;
+using std::ostream;
+using std::rand;
 
 Hill::Hill(const Board& board)
   : orig(board)
   , fin(orig.get_size())
   , size(orig.get_size()) {
-  std::srand(std::time(0));
+  srand(time(0));
   fin = Board::generate_rand(orig);
-  for (int row = 0; row < size; ++row) {
-    for (int col = 0; col < size; ++col) {
+  for (int row = 0; row < size; row++) {
+    for (int col = 0; col < size; col++) {
       if (orig.get(row, col) == 0)
         valid_locs.push_back(std::make_pair(row, col));
     }
@@ -44,9 +47,9 @@ bool Hill::solve() {
     if (iters > 1000) {
       fin = Board::generate_rand(orig);
       iters = 0;
-      ++retries;
+      retries++;
     }
-    ++iters;
+    iters++;
     if (fin.H < best.H)
       best = fin;
   }
@@ -55,11 +58,11 @@ bool Hill::solve() {
   return fin.H == 0;
 }
 
-std::pair<int, int> Hill::get_random_loc() {
-  return valid_locs[std::rand()/RAND_MAX*valid_locs.size()];
+pair<int, int> Hill::get_random_loc() {
+  return valid_locs[rand()/RAND_MAX*valid_locs.size()];
 }
 
-std::ostream& operator<<(std::ostream& out, const Hill& ob) {
+ostream& operator<<(ostream& out, const Hill& ob) {
   out << ob.fin << "\n";
   return out;
 }

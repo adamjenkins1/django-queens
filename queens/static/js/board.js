@@ -20,28 +20,33 @@ var looping = true;
 
 
 function randomQueens() {
-  positionString = "";
-  for(i = 0; i < 8; i++) {
-    random = getRandomInt(1,7);
-    if(random == 7) {
-      chance = getRandomInt(0,1);
-      if(chance == 0) {
-        positionString += 'q7';
-      }
-      else if(chance == 1) {
-        positionString += '7q';
-      }
-    }
-    else {
-      positionString += parseInt(7 - random) + 'q' + parseInt(random);
-    }
+  var positionString = "";
+  var choices = [0, 1, 2, 3, 4, 5, 6, 7];
 
-    if(i < 7) {
-      positionString += '/';
+  while(true) {
+    random = getRandomInt(0,7);
+    var index = choices.indexOf(random);
+    if(index > -1) {
+      choices.splice(index, 1);
+      if(random == 0) {
+        positionString += 'q' + 7;
+      }
+      else if(random == 7) {
+        positionString += 7 + 'q';
+      }
+      else {
+        positionString += random + 'q' + (7 - random);
+      }
+
+      if(choices.length > 0) {
+        positionString += '/';
+      }
+    }
+    if(choices.length == 0) {
+      break;
     }
   }
 
-  //positionString = 'qqqqqqqq/qqqqqqqq/qqqqqqqq/qqqqqqqq/qqqqqqqq/qqqqqqqq/qqqqqqqq/qqqqqqqq';
   console.log(positionString);
   board1.position(positionString);
 }

@@ -103,6 +103,7 @@ ENV/
 \.DS_Store
 
 *.swp
-AC3
+solver
 *.o
+*.d
 tests/
