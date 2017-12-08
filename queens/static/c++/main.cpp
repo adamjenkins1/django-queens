@@ -1,5 +1,4 @@
 #include "hill.h"
-#include "board.h"
 #include <iostream>
 #include <fstream>
 using std::endl;
@@ -9,7 +8,7 @@ using std::string;
 using std::ifstream;
 
 int main(int argc, char **argv) {
-  if (argc != 4) {
+  if (argc != 3) {
     cerr << "[AI] usage: solver <method> <size> <filename>" << endl;
     return 1;
   }
@@ -23,13 +22,12 @@ int main(int argc, char **argv) {
     cerr << "[AI] error: size must be an integer" << endl;
     return 2;
   }
-  string filename = argv[3];
-  ifstream in(filename);
-  Board board(size);
-  in >> board;
+  //string filename = argv[3];
+  //ifstream in(filename);
   if (method == "Hill") {
-    Hill hill(board);
-    cout << hill.solve() << endl;
-    cout << hill;
+    Hill hill(size);
+    hill.print();
+    //cout << hill.solve() << endl;
+    //cout << hill;
   }
 }
