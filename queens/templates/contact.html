@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+{% block content %}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Queens Problem</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="active"><a href="/contact">Contact</a></li>
+        <li><a href="/stats">Statistics</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Contact Information</h2>
+  <ul>
+    <h4>
+      To report a bug, contact the developer, Adam Jenkins, at ajenkins17@mail.csuchico.edu.
+      Please be as specific as you can about what caused the bug as well as the bug itself
+      when reporting an issue. Any screenshots that you can provide with your report are 
+      incredibly helpful.
+    </h4>
+  </ul>
+  <!--
+    <div class="jumbotron">
+    <h1>Navbar example</h1>
+    </p>
+    </div>
+  -->
+
+</div> <!-- /container -->
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
