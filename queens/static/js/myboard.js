@@ -1,43 +1,41 @@
-var initial = {
-  a1: 'bQ',
-  b2: 'bQ',
-  c3: 'bQ',
-  d4: 'bQ',
-  e5: 'bQ',
-  f6: 'bQ',
-  g7: 'bQ',
-  h8: 'bQ',
-};
-
-var board1 = ChessBoard('board1', initial);
+var board1 = ChessBoard('board1');
+var solveClicked = false;
 
 $('#solve').on('click', function () {
-  var queens = parseInt($('#numQueens').val());
-  var method = $('#method').val();
-  if(queens >= 4 && queens <= 8 && (method == 'Recursive')) {
+  if(solveClicked == false) {
+    solveClicked = true;
+    var queens = parseInt($('#numQueens').val());
+    var method = $('#method').val();
+    if(queens >= 4 && queens <= 8 && (method == 'Recursive')) {
 
-    var url = '/solve/' + queens + '/' + method + '/';
-    $.post(url)
-      .done(function(result) {
-        console.log(result);
-        board1.position(result);
-      })
-    .fail(function(xhr, status, error) {
-      if(xhr.status == 400) {
-        alert('Unable to find soltion');
-      }
-    });
-  }
-  else if(isNaN(queens)) {
-    alert('Choose a number of queens between 4 and 8 inclusive.');
-    $('#numQueens').val('');
-  }
-  else if(method != 'Recursive') {
-    alert('Invalid algorithm: ' + method);
-  }
-  else {
-    alert('Invalid number of Queens: ' + queens + '. Pick a value between 4 and 8 inclusive.');
-    $('#numQueens').val('');
+      var url = '/solve/' + queens + '/' + method + '/';
+      $.post(url)
+        .done(function(result) {
+          console.log(result);
+          board1.position(result);
+          solveClicked = false;
+        })
+      .fail(function(xhr, status, error) {
+        if(xhr.status == 400) {
+          alert('Unable to find soltion');
+          solveClicked = false;
+        }
+      });
+    }
+    else if(isNaN(queens)) {
+      alert('Choose a number of queens between 4 and 8 inclusive.');
+      $('#numQueens').val('');
+      solveClicked = false;
+    }
+    else if(method != 'Recursive') {
+      alert('Invalid algorithm: ' + method);
+      solveClicked = false;
+    }
+    else {
+      alert('Invalid number of Queens: ' + queens + '. Pick a value between 4 and 8 inclusive.');
+      $('#numQueens').val('');
+      solveClicked = false;
+    }
   }
 });
 
