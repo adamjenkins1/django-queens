@@ -1,6 +1,7 @@
-#include "hill.h"
+#include "backtrack.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 using std::endl;
 using std::cerr;
 using std::cout;
@@ -13,21 +14,18 @@ int main(int argc, char **argv) {
     return 1;
   }
   string method = argv[1];
-  if (method != "Hill") {
+  if (method != "Hill" && method != "Recursive") {
     cerr << "[AI] error: invalid method type" << endl;
     return 3;
   }
-  int size = atoi(argv[2]);
+  unsigned int size = atoi(argv[2]);
   if (size == 0) {
     cerr << "[AI] error: size must be an integer" << endl;
     return 2;
   }
-  //string filename = argv[3];
-  //ifstream in(filename);
-  if (method == "Hill") {
-    Hill hill(size);
-    hill.print();
-    //cout << hill.solve() << endl;
-    //cout << hill;
+  if(method == "Recursive") {
+    Backtrack backtrack(size);
+    cout << backtrack.solve() << endl;
+    backtrack.print();
   }
 }

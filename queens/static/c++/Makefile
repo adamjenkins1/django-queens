@@ -1,28 +1,11 @@
-## Makefile
-## Author: Alexander Corley
+solver: backtrack.o main.o
+	g++ -Wall -pedantic -g -std=c++11 backtrack.o main.o -o solver
 
-DEBUG=
-#DEBUG=-DDEBUG
-CXX=g++
-CXXFLAGS=-std=c++11 -pedantic -Wall -Werror -g $(DEBUG) -MMD
-SOURCE=$(wildcard *.cpp)
-OBJECTS=$(SOURCE:%.cpp=%.o)
-EXE=solver
+main.o:
+	g++ -Wall -pedantic -g -std=c++11 -c main.cpp
 
-DEPS=$(OBJECTS:%.o=%.d)
-
-all: EXE
-
-rebuild: clean all
+backtrack.o:
+	g++ -Wall -pedantic -g -std=c++11 -c backtrack.cpp
 
 clean:
-	rm -f $(OBJECTS) $(EXE) $(DEPS)
-
-EXE: $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $(EXE)
-
-%.o: %.c
-	$(CXX) -c $< -o $@
-
--include $(DEPS)
-
+	rm -f *.o *.d solver
