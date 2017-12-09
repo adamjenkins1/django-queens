@@ -4,47 +4,30 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Queens Problem</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/stats">Statistics</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
-
 <div class="container" style="padding-top: 50px">
   <div class="form-group" style="float: right; padding-top: 50px; margin-right: 12%">
 
     <label>Number of queens:</label><br>
-    <input type="number" name="numQueens" min="4" max="8" size="1" style="width: 150%"><br>
+    <input min="4" max="8" size="1" id="numQueens" style="width: 150%"><br>
 
     <label>Algorithm:</label>
-    <select class="form-control" style="width: 150%">
-      <option>AC-3</option>
+    <select id="method" class="form-control" style="width: 150%">
+      <option>Recursive</option>
     </select>
     <br>
 
-    <button type="button" class="button btn-primary btn-lg" id="toggleQueens">Submit!</button>
+    <button type="button" class="button btn-primary btn-lg" id="solve">Submit!</button>
   </div>
 
-
   <div id="board1" style="width: 450px; float: left; margin-left: 27%"></div>
-  <!--<div style="text-align: center">
-    <button type="button" class="button btn-primary btn-lg" id="toggleQueens">Stop/Start</button>
-  </div>-->
 </div>
 
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/board.js' %}"></script>
+{% csrf_token %}
+<script>
+var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+</script>
+<script src="{% static 'js/myboard.js' %}"></script>
 {% endblock %}
