@@ -42,10 +42,21 @@ def solve(request, size, method):
     solution = solution.strip()
     solution = solution.split(' ')
     solution = list(map(int, solution))
-    solutionJson = json.dumps(solution)
+    positionObject = {}
+
+    k = 0
+    positionLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    for i in range(int(size)):
+        for j in range(int(size)):
+            if(solution[k] != 0):
+                positionObject[positionLetters[j] + str(i + 1)] = 'bQ'
+            k += 1
+          
+    positionObjectJson = json.dumps(positionObject)
+    print(positionObjectJson)
 
     if(solved != '1'):
-        return HttpResponse(solvedBoardJson, content_type = 'application/json', status = '400')
+        return HttpResponse(status = '400')
 
     '''
     newRow = SudokuData()
@@ -55,4 +66,4 @@ def solve(request, size, method):
     newRow.difficulty = difficulty
     newRow.save()
     '''
-    return HttpResponse(solutionJson, content_type = 'application/json')
+    return HttpResponse(positionObjectJson, content_type = 'application/json')

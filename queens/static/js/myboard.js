@@ -1,4 +1,4 @@
-var position = {
+var initial = {
   a1: 'bQ',
   b2: 'bQ',
   c3: 'bQ',
@@ -9,7 +9,7 @@ var position = {
   h8: 'bQ',
 };
 
-var board1 = ChessBoard('board1', position);
+var board1 = ChessBoard('board1', initial);
 
 $('#solve').on('click', function () {
   var queens = parseInt($('#numQueens').val());
@@ -20,10 +20,11 @@ $('#solve').on('click', function () {
     $.post(url)
       .done(function(result) {
         console.log(result);
+        board1.position(result);
       })
     .fail(function(xhr, status, error) {
       if(xhr.status == 400) {
-        console.log('something');
+        alert('Unable to find soltion');
       }
     });
   }
