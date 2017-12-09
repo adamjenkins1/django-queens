@@ -65,3 +65,14 @@ def solve(request, size, method):
     newRow.time = real*1000
     newRow.save()
     return HttpResponse(positionObjectJson, content_type = 'application/json')
+
+def jsondata(request):
+    data = ChessData.objects.all().order_by('-id')
+    dictionary = []
+    obj = {}
+    for row in data:
+        obj = row.as_dict()
+        dictionary.append(obj)
+
+    jsonResponse = json.dumps(dictionary)
+    return HttpResponse(jsonResponse, content_type = 'application/json')

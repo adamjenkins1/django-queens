@@ -2,7 +2,7 @@ var count = 0;
 var app = new Vue({
   el: '#app',
   data: {
-    sudokuDataList: [],
+    chessDataList: [],
     numRows: Number,
   },
   mounted() {
@@ -10,37 +10,19 @@ var app = new Vue({
 
     setInterval(function () {
       this.loadData();
-    }.bind(this), 10000);
+    }.bind(this), 5000);
   },
   methods: {
     loadData: function () {
       $.get('/jsondata', function (response) {
-        this.sudokuDataList = response;
-        this.numRows = this.sudokuDataList.rows.length;
-        var dataPointsAC3 = this.sudokuDataList.rows.filter(function(e) {
-          return e.algorithm == 'AC3';
+        this.chessDataList = response;
+        this.numRows = this.chessDataList.length;
+        var dataPointsRecursive = this.chessDataList.filter(function(e) {
+          return e.algorithm == 'Recursive';
         }).map(function(e) {
           return {
-              x: e.size,
-              y: e.time
-          };
-        });
-
-        var dataPointsGenetic = this.sudokuDataList.rows.filter(function(e) {
-          return e.algorithm == 'Genetic';
-        }).map(function(e) {
-          return {
-              x: e.size,
-              y: e.time
-          };
-        });
-
-        var dataPointsHill = this.sudokuDataList.rows.filter(function(e) {
-          return e.algorithm == 'Hill Climbing';
-        }).map(function(e) {
-          return {
-              x: e.size,
-              y: e.time
+            x: e.queens,
+            y: e.time
           };
         });
 
@@ -51,34 +33,25 @@ var app = new Vue({
           type: 'scatter',
           data: {
             datasets: [{
-              label: 'AC3',
+              label: 'Recursive',
               borderColor: 'rgb(255, 65, 54)',
               backgroundColor: color('rgb(255, 65, 54)').alpha(0.2).rgbString(),
-              data: dataPointsAC3
-            }, {
-              label: 'Genetic',
-              borderColor: window.chartColors.blue,
-              backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
-              data: dataPointsGenetic
-            }, {
-              label: 'Hill Climbing',
-              borderColor: 'rgb(0, 128, 0)',
-              backgroundColor: color('rgb(0, 128, 0)').alpha(0.2).rgbString(),
-              data: dataPointsHill
-            }]
+              data: dataPointsRecursive
+            }
+            ]
           },
           options: {
             scales: {
               xAxes: [{
                 ticks: {
-                  min: 2,
-                  max: 16,
+                  min: 4,
+                  max: 8,
                 },
                 type: 'linear',
                 position: 'bottom',
                 scaleLabel: {
                   display: true,
-                  labelString: 'Board Size',
+                  labelString: '# of Queens',
                   fontSize: 15
                 }
               }],
@@ -93,38 +66,18 @@ var app = new Vue({
             title: {
               display: true,
               fontSize: 25,
-              text: 'Board Size vs Time'
+              text: 'Number of Queens vs Time (ms)'
             },
           }
         });
 
-        var AC3Time = dataPointsAC3.map(e => e.y);
-        var AC3X = dataPointsAC3.map(e => e.x);
+        var recursiveTime = dataPointsRecursive.map(e => e.y);
+        var recursiveX = dataPointsRecursive.map(e => e.x);
 
-        var geneticTime = dataPointsGenetic.map(e => e.y);
-        var geneticX = dataPointsGenetic.map(e => e.x);
-
-        var hillTime = dataPointsHill.map(e => e.y);
-        var hillX = dataPointsHill.map(e => e.x);
-
-        
-
-        var geneticBox = {
-          x: geneticX,
-          y: geneticTime,
-          name: 'Genetic',
-          marker: {
-            color: 'rgb(54, 162, 235)'
-          },
-          boxmean: true,
-          type: 'box',
-          orientation: 'v'
-        };
-
-        var AC3Box = {
-          x: AC3X,
-          y: AC3Time,
-          name: 'AC3',
+        var recursiveBox = {
+          x: recursiveX,
+          y: recursiveTime,
+          name: 'Recursive',
           marker: {
             color: 'rgb(255, 65, 54)'
           },
@@ -133,30 +86,18 @@ var app = new Vue({
           orientation: 'v'
         };
 
-        var hillBox = {
-          x: hillX,
-          y: hillTime,
-          name: 'Hill Climbing',
-          marker: {
-            color: 'rgb(0, 128, 0)'
-          },
-          boxmean: true,
-          type: 'box',
-          orientation: 'v'
-        };
-
         var layout = {
-          title: 'Board Size vs Time (ms) by Algorithm',
+          title: 'Number of Queens vs Time (ms) by Algorithm',
           yaxis: {
             title: 'Time (ms)',
           },
           xaxis: {
-            title: 'Board Size',
+            title: '# of Queens',
           },
           boxmode: 'group'
         };
 
-        var data = [AC3Box, geneticBox, hillBox];
+        var data = [recursiveBox];
         Plotly.newPlot('box', data, layout);
 
       }.bind(this));

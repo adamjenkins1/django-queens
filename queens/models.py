@@ -7,3 +7,10 @@ class ChessData(models.Model):
 
   def __str__(self):
     return self.algorithm + ', ' + str(self.queens)
+
+  def as_dict(self):
+    return {
+        'queens': self.queens,
+        'algorithm': self.algorithm,
+        'time': self.time
+    }
