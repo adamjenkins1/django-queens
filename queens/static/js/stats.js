@@ -46,6 +46,7 @@ var app = new Vue({
                 ticks: {
                   min: 4,
                   max: 8,
+                  stepSize: 1
                 },
                 type: 'linear',
                 position: 'bottom',

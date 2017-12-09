@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5(&e5#2ht)t!2x+9hr0a%a60t-o87p3wsa1@u1fxc880qz!7^4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'queens.divisionc.com']
 
