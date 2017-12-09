@@ -57,6 +57,9 @@ var app = new Vue({
                 }
               }],
               yAxes: [{
+                ticks: {
+                  stepSize: 0.2 
+                },
                 scaleLabel: {
                   display: true,
                   labelString: 'Time (ms)',
