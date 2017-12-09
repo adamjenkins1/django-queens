@@ -25,7 +25,7 @@ SECRET_KEY = '5(&e5#2ht)t!2x+9hr0a%a60t-o87p3wsa1@u1fxc880qz!7^4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'queens.divisionc.com']
 
 
 # Application definition
