@@ -35,9 +35,8 @@ def solve(request, size, method):
         print('Error while calling algorithm: ' + error)
         return HttpResponse('Error while calling algorithm', status = '500')
 
-    out = out.decode()[:-2]
+    out = out.decode()[:-1]
     solved = out[0]
-    print(out)
 
     solution = out[1:]
     solution = solution.strip()
@@ -55,6 +54,5 @@ def solve(request, size, method):
     newRow.time = real*1000
     newRow.difficulty = difficulty
     newRow.save()
-    return HttpResponse(solvedBoardJson, content_type = 'application/json')
     '''
-    return HttpResponse();
+    return HttpResponse(solutionJson, content_type = 'application/json')

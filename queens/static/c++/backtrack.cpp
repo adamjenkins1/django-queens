@@ -71,6 +71,8 @@ void Backtrack::print() {
     for(int j = 0; j < m_size; j++) {
       cout << m_board[i][j] << " ";
     }
+    #ifdef DEBUG
     cout << endl;
+    #endif
   }
 }
