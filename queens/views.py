@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic.base import RedirectView
 from django.http import JsonResponse
+from .models import ChessData
 import os, subprocess, json
 from time import time
 
@@ -53,17 +54,14 @@ def solve(request, size, method):
             k += 1
           
     positionObjectJson = json.dumps(positionObject)
-    print(positionObjectJson)
+    #print(positionObjectJson)
 
     if(solved != '1'):
         return HttpResponse(status = '400')
 
-    '''
-    newRow = SudokuData()
-    newRow.algorithm = algorithm
-    newRow.size = boardSize
+    newRow = ChessData()
+    newRow.algorithm = method
+    newRow.queens = size
     newRow.time = real*1000
-    newRow.difficulty = difficulty
     newRow.save()
-    '''
     return HttpResponse(positionObjectJson, content_type = 'application/json')

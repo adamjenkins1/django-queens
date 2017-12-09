@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+class ChessData(models.Model):
+  queens = models.IntegerField(default = 0)
+  algorithm = models.CharField(max_length = 200, default = '0')
+  time = models.FloatField(default = 0)
+
+  def __str__(self):
+    return self.algorithm + ', ' + str(self.queens)
