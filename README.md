@@ -5,7 +5,7 @@
   with the number of Queens being between 4 and 8 inclusive. and uses 
   [chessboard.js][chessboardjs link], [Vue.js][vuejs link], [jQuery][jquery link], 
   and [Bootstrap][bootstrap link] for front end, and [C++][c++ link] 
-  in the back end to implement algorithms.
+  in the back end to implement algorithms. Click [here][divc link] to see a live demo.
 
 ## Requirements
 * All that is required to run this web app is [Python 3][python link], 
@@ -37,3 +37,4 @@
 [vuejs link]: https://vuejs.org/
 [c++ link]: https://en.wikipedia.org/wiki/C%2B%2B
 [recursion link]: https://en.wikipedia.org/wiki/Recursion_(computer_science)
+[divc link]: http://queens.divisionc.com
