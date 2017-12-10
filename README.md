@@ -2,7 +2,7 @@
 
 ## About
 * This [Django][django link] web app is designed to solve the [Queens problem][queens link]
-  with the number of Queens being between 4 and 8 inclusive. and uses 
+  with the number of Queens being between 4 and 8 inclusive and uses 
   [chessboard.js][chessboardjs link], [Vue.js][vuejs link], [jQuery][jquery link], 
   and [Bootstrap][bootstrap link] for front end, and [C++][c++ link] 
   in the back end to implement algorithms. Click [here][divc link] to see a live demo.
