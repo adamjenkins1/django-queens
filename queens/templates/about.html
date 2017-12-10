@@ -5,10 +5,48 @@
 {% block content %}
 
 <div class="container">
-  <h2>About this website...</h2>
+  <h3>About this web app...</h3>
+  <ul>
+    <p>This <a href="https://www.djangoproject.com/" target="new">Django</a> web app is designed 
+    to solve the 
+    <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="new">Queens problem</a> 
+    with the number of Queens being between 4 and 8 inclusive. 
+    and uses <a href="https://chessboardjs.com/" target="new">chessboard.js</a>, 
+    <a href="https://vuejs.org/" target="new">Vue.js</a>,
+    <a href="https://jquery.com/" target="new">jQuery</a>, and
+    <a href="https://getbootstrap.com/" target="new">Bootstrap</a>
+    for front end, and <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="new">C++</a> 
+    in the back end to implement algorithms.</p>
+  </ul>
+
+  <h3>Requirements</h3>
+  <ul>
+    <p>All that is required to run this web app is 
+    <a href="https://www.python.org/downloads/" target="new">Python 3</a>, 
+    <a href="https://www.djangoproject.com/" target="new">Django</a> &gt;= 1.11.5, g++, and make.</p>
+  </ul>
+
+  <h3>Running the project</h3>
+  <ul>
+    <p>To run this project, first fork and clone the 
+    <a href="https://github.com/adamjenkins1/django-queens" target="new">git repository</a>. To run this 
+    project locally, make sure to set <code>DEBUG = True</code> in <code>project/settings.py</code>,
+    otherwise the Django web server will not serve the required static files. Once that has been changed, type 
+    <code>make run PORT=&lt;port&gt;</code>. This will compile the C++ program required for 
+    running the algorithms and start the Django web server. If no port is specified, Django 
+    will start the web server on port 8000. To install requirements run <code>make pyreqs</code>.
+    This is also done automatically when <code>make run</code> is called.</p>
+  </ul>
+
+  <h3>The Algorithms</h3>
+  <ul>
+    <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)" target="new">Recursive</a>
+  </ul>
+
+  <h3>Authors</h3>
+  <ul>
+    <a href="https://github.com/adamjenkins1" target="new">Adam Jenkins</a><br>
+  </ul>
 </div> <!-- /container -->
 
-{% endblock %}
-
-{% block scripts %}
 {% endblock %}
